@@ -6,7 +6,6 @@
   "author": "generic_discord_user",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "npm": "^6.5.0",
-    "winston": "^3.1.0"
+    "npm": "^6.5.0"
   }
 }
