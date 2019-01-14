@@ -1,7 +1,6 @@
-var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
-var DiscordJS = require('discord.js');
+var Discord = require('discord.js');
 const config = require("./auth.json");
 
 // Configure logger settings
@@ -11,7 +10,7 @@ logger.add(new logger.transports.Console, {
 });
 logger.level = 'debug';
 
-const client = new DiscordJS.Client();
+const client = new Discord.Client();
 
 client.on('ready', () => {
   logger.info('Connected');
