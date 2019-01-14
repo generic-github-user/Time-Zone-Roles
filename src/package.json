@@ -1,0 +1,8 @@
+{
+  "name": "time-zone-roles",
+  "version": "1.0.0",
+  "description": "Display local time for each member of a server",
+  "main": "bot.js",
+  "author": "generic_discord_user",
+  "dependencies": {}
+}
