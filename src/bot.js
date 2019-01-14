@@ -1,7 +1,8 @@
 var auth = require('./auth.json');
 var Discord = require('discord.js');
+var Commando = require('discord.js-commando');
 
-const client = new Discord.Client();
+const client = new Commando.Client();
 
 var settings = {
 	"prefix": "?"
