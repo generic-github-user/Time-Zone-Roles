@@ -4,5 +4,10 @@
   "description": "Display local time for each member of a server",
   "main": "bot.js",
   "author": "generic_discord_user",
-  "dependencies": {}
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "npm": "^6.5.0",
+    "winston": "^3.1.0"
+  }
 }
