@@ -28,10 +28,6 @@ client.on('ready', () => {
   client.user.setActivity('with time');
 });
 
-client.on('message', msg => {
-  if (msg.content === s.prefix + 'ping') {
-    msg.reply('Pong!');
-  }
-});
+
 
 client.login(auth.token);
