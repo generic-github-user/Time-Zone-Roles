@@ -30,23 +30,25 @@ module.exports = class SayCommand extends Command {
 
     run(msg, { zone, user }) {
 		var guild = msg.guild;
-		var role = guild.roles.find(x => x.name === zone);
-		if (!role) {
-			guild.createRole(
-				{
-					name: zone,
-					color: 'BLUE',
-				},
-				"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
-			);
-		}
 		
 		if (user == '') {
-			return msg.author.send(zone);
-		} else if (msg.member.hasPermission("MANAGE_SERVER")) {
-			return user.send(zone);
-		} else {
-			return "You do not have permission to set the time zone for another user.";
+			user = msg.author;
+		} else if (!msg.member.hasPermission("MANAGE_SERVER")) {
+			user = '';
+			msg.say("You do not have permission to set the time zone for another user.");
+		}
+		
+		if (user != '') {
+			var role = guild.roles.find(x => x.name === zone);
+			if (!role) {
+				guild.createRole(
+					{
+						name: zone,
+						color: 'BLUE',
+					},
+					"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
+				);
+			}
 		}
     }
 };
