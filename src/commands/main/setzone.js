@@ -41,7 +41,7 @@ module.exports = class SayCommand extends Command {
 		if (user != '') {
 			var role = guild.roles.find(x => x.name === zone);
 			if (!role) {
-				guild.createRole(
+				role = guild.createRole(
 					{
 						name: zone,
 						color: 'BLUE',
@@ -49,6 +49,16 @@ module.exports = class SayCommand extends Command {
 					"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
 				);
 			}
+			
+			// https://stackoverflow.com/a/27760489
+			Promise.resolve(role).then(
+				function(zoneRole) {
+					guild.member(user).addRole(
+						zoneRole,
+						"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
+					);
+				}
+			);
 		}
     }
 };
