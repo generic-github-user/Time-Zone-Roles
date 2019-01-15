@@ -49,16 +49,21 @@ module.exports = class SayCommand extends Command {
 					"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
 				);
 			}
-			
-			// https://stackoverflow.com/a/27760489
-			Promise.resolve(role).then(
-				function(zoneRole) {
-					guild.member(user).addRole(
-						zoneRole,
-						"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
-					);
-				}
-			);
+				
+			if (
+				!guild.member(user).roles
+				.find(x => x.name === zone)
+			) {
+				// https://stackoverflow.com/a/27760489
+				Promise.resolve(role).then(
+					function(zoneRole) {
+						guild.member(user).addRole(
+							zoneRole,
+							"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
+						);
+					}
+				);
+			}
 		}
     }
 };
