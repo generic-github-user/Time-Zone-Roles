@@ -29,6 +29,15 @@ module.exports = class SayCommand extends Command {
     }
 
     run(msg, { zone, user }) {
+		var guild = msg.guild;
+		var role = guild.roles.find(x => x.name === zone);
+		if (!role) {
+			guild.createRole({
+				name: zone,
+				color: 'BLUE',
+			});
+		}
+		
 		if (user == '') {
 			return msg.author.send(zone);
 		} else if (msg.member.hasPermission("MANAGE_SERVER")) {
