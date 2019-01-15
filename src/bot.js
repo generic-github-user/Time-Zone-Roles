@@ -17,7 +17,7 @@ s = settings;
 client.registry
     .registerDefaultTypes()
     .registerGroups([
-        ['Command Group']
+        ['main', 'Main Command Group']
     ])
     .registerDefaultGroups()
     .registerDefaultCommands()
@@ -27,7 +27,5 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('with time');
 });
-
-
 
 client.login(auth.token);
