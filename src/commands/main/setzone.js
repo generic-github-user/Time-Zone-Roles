@@ -13,10 +13,28 @@ module.exports = class SayCommand extends Command {
 				duration: 15
 			},
             args: [
+                {
+                    key: 'zone',
+                    prompt: 'What time zone do you want to assign?',
+                    type: 'string'
+                },
+                {
+                    key: 'user',
+                    prompt: 'Who would you like to assign this time zone to?',
+                    type: 'user',
+					default: ''
+                }
             ]
         });    
     }
 
     run(msg, { zone, user }) {
+		if (user == '') {
+			return msg.author.send(zone);
+		} else if (msg.member.hasPermission("MANAGE_SERVER")) {
+			return user.send(zone);
+		} else {
+			return "You do not have permission to set the time zone for another user.";
+		}
     }
 };
