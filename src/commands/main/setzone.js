@@ -32,10 +32,13 @@ module.exports = class SayCommand extends Command {
 		var guild = msg.guild;
 		var role = guild.roles.find(x => x.name === zone);
 		if (!role) {
-			guild.createRole({
-				name: zone,
-				color: 'BLUE',
-			});
+			guild.createRole(
+				{
+					name: zone,
+					color: 'BLUE',
+				},
+				"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
+			);
 		}
 		
 		if (user == '') {
