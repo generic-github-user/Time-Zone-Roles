@@ -6,8 +6,11 @@ module.exports = class SayCommand extends Command {
             name: 'setzone',
             group: 'main',
             memberName: 'dm',
-            examples: ['setzone EST'],
             description: 'Set the time zone of a given user. If no user is provided, your own time zone will be set.',
+            examples: [
+				'setzone EST',
+				'setzone PST @amazing_discord_user#3392'
+			],
 			throttling: {
 				usages: 1,
 				duration: 15
