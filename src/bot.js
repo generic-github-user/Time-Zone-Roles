@@ -22,7 +22,9 @@ client.registry
         ['main', 'Main Command Group']
     ])
     .registerDefaultGroups()
-    .registerDefaultCommands()
+	.registerDefaultCommands({
+		eval: false
+	})
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 guilds = client.guilds;
