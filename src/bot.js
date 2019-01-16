@@ -12,7 +12,8 @@ const client = new Commando.Client({
 
 global.settings = {
 	"prefix": "?",
-	"timezones": timezones.names
+	"timezones": timezones.names,
+	"offsets": timezones.offsets
 };
 
 client.registry
