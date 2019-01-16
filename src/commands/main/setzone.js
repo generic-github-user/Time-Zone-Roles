@@ -49,7 +49,7 @@ module.exports = class SayCommand extends Command {
 					"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
 				);
 			}
-				
+			
 			if (
 				!guild.member(user).roles
 				.find(x => x.name === zone)
@@ -63,6 +63,8 @@ module.exports = class SayCommand extends Command {
 						);
 					}
 				);
+			} else {
+				msg.say(user.username + ' already has the timezone role `' + zone + '`.');
 			}
 		}
     }
