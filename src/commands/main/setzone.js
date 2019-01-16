@@ -39,32 +39,39 @@ module.exports = class SayCommand extends Command {
 		}
 		
 		if (user != '') {
-			var role = guild.roles.find(x => x.name === zone);
-			if (!role) {
-				role = guild.createRole(
-					{
-						name: zone,
-						color: 'BLUE',
-					},
-					"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
-				);
-			}
-			
-			if (
-				!guild.member(user).roles
-				.find(x => x.name === zone)
-			) {
-				// https://stackoverflow.com/a/27760489
-				Promise.resolve(role).then(
-					function(zoneRole) {
-						guild.member(user).addRole(
-							zoneRole,
-							"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
-						);
-					}
-				);
+			if (settings.timezones.includes(zone)) {
+				var role = guild.roles.find(x => x.name === zone);
+				if (!role) {
+					role = guild.createRole(
+						{
+							name: zone,
+							color: 'BLUE',
+						},
+						"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
+					);
+				}
+				
+				if (
+					!guild.member(user).roles
+					.find(x => x.name === zone)
+				) {
+					// https://stackoverflow.com/a/27760489
+					Promise.resolve(role).then(
+						function(zoneRole) {
+							guild.member(user).addRole(
+								zoneRole,
+								"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
+							);
+						}
+					);
+				} else {
+					msg.say(user.username + ' already has the timezone role `' + zone + '`.');
+				}
 			} else {
-				msg.say(user.username + ' already has the timezone role `' + zone + '`.');
+				msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned. Valid time zones include:');
+				msg.say(
+					settings.timezones.join(", ")
+				);
 			}
 		}
     }
