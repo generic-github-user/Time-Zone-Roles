@@ -25,6 +25,8 @@ client.registry
     .registerDefaultCommands()
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
+guilds = client.guilds;
+
 function localTime(time, offset) {
     var d = new Date();
     var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
@@ -43,6 +45,32 @@ function containsZone(string) {
 	);
 	return zones;
 }
+
+function updateTimes() {
+	var d = new Date();
+	
+	guilds.array().forEach(
+		(guild) => {
+			guild.roles.filter(
+				x => new RegExp(settings.timezones.join("|")).test(
+					x.name
+				)
+			).array().forEach(
+				(role) => {
+					role.setName(
+						containsZone(role.name)[0] + " - " + localTime(
+							d,
+							settings.offsets[
+								settings.timezones.indexOf(containsZone(role.name)[0])
+							]
+						).getHours()
+					);
+				}
+			)
+		}
+	);
+}
+	
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('with time');
