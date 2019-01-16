@@ -64,6 +64,8 @@ module.exports = class SayCommand extends Command {
 							);
 						}
 					);
+					
+					msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.');
 				} else {
 					msg.say(user.username + ' already has the timezone role `' + zone + '`.');
 				}
