@@ -43,6 +43,13 @@ module.exports = class SayCommand extends Command {
 		
 		if (user != '') {
 			if (settings.timezones.includes(zone)) {
+				var member = guild.member(user);
+				member.removeRoles(
+					guild.roles.filter(
+						x => settings.timezones.includes(x.name)
+					)
+				);
+				
 				var role = guild.roles.find(x => x.name === zone);
 				if (!role) {
 					role = guild.createRole(
@@ -55,13 +62,13 @@ module.exports = class SayCommand extends Command {
 				}
 				
 				if (
-					!guild.member(user).roles
+					!member.roles
 					.find(x => x.name === zone)
 				) {
 					// https://stackoverflow.com/a/27760489
 					Promise.resolve(role).then(
 						function(zoneRole) {
-							guild.member(user).addRole(
+							member.addRole(
 								zoneRole,
 								"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
 							);
