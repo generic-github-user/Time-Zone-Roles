@@ -31,6 +31,18 @@ function localTime(time, offset) {
     var nd = new Date(utc + (3600000*offset));
     return nd;
 }
+
+function containsZone(string) {
+	var zones = [];
+	settings.timezones.forEach(
+		(zone) => {
+			if (string.includes(zone)) {
+				zones.push(zone);
+			}
+		}
+	);
+	return zones;
+}
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.user.setActivity('with time');
