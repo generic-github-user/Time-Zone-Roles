@@ -72,8 +72,10 @@ function updateTimes() {
 }
 	
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity('with time');
+	console.log(`Logged in as ${client.user.tag}!`);
+	client.user.setActivity('with time');
+	updateTimes();
 });
 
 client.login(auth.token);
+setInterval(updateTimes, 30*60)
