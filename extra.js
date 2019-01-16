@@ -7,3 +7,15 @@
     msg.reply('Pong!');
   }
 });
+
+member.roles.forEach(
+	(role) => {
+		settings.timezones.forEach(
+			(zone) => {
+				if (role.name === zone) {
+					member.removeRole(role);
+				}
+			}
+		)
+	}
+);
