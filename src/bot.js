@@ -10,11 +10,10 @@ const client = new Commando.Client({
     disableEveryone: true
 });
 
-var settings = {
+global.settings = {
 	"prefix": "?",
 	"timezones": timezones.names
 };
-s = settings;
 
 client.registry
     .registerDefaultTypes()

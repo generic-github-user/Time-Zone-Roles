@@ -1,4 +1,4 @@
-var timezones = {
+module.exports = {
 	"names": [
 		'LINT',
 		'CHADT',
