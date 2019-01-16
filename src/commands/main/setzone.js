@@ -4,6 +4,7 @@ module.exports = class SayCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'setzone',
+			aliases: 'settimezone', 'set', 'addzone', 'setuserzone', 'tzrset'
             group: 'main',
             memberName: 'dm',
             description: 'Set the time zone of a given user. If no user is provided, your own time zone will be set.',
