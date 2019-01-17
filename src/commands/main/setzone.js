@@ -73,11 +73,12 @@ module.exports = class SayCommand extends Command {
 							member.addRole(
 								zoneRole,
 								"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
+							).then(
+								() => msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.')
+							);
 							);
 						}
 					);
-					
-					msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.');
 				} else {
 					msg.say(user.username + ' already has the timezone role `' + zone + '`.');
 				}
