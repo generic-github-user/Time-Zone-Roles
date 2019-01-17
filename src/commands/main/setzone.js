@@ -48,15 +48,15 @@ module.exports = class SayCommand extends Command {
 				var member = guild.member(user);
 				member.removeRoles(
 					guild.roles.filter(
-						x => containsZones(x.name)
+						x => containsZones(toRoleName(x.name))
 					)
 				);
 				
-				var role = guild.roles.find(x => x.name.includes(zone));
+				var role = guild.roles.find(x => x.name.includes(toRoleName(zone)));
 				if (!role) {
 					role = guild.createRole(
 						{
-							name: zone,
+							name: toRoleName(zone),
 							color: 'BLUE',
 						},
 						"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
@@ -65,7 +65,7 @@ module.exports = class SayCommand extends Command {
 				
 				if (
 					!member.roles
-					.find(x => x.name.includes(zone))
+					.find(x => x.name.includes(toRoleName(zone)))
 				) {
 					// https://stackoverflow.com/a/27760489
 					Promise.resolve(role).then(
@@ -78,7 +78,7 @@ module.exports = class SayCommand extends Command {
 								() => msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.')
 							);
 							updateTimes(
-								guild.roles.filter(x => x.name.includes(zone))
+								guild.roles.filter(x => x.name.includes(toRoleName(zone)))
 							);
 						}
 					);

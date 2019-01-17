@@ -31,6 +31,10 @@ client.registry
 
 guilds = client.guilds;
 
+global.toRoleName = function (zoneName) {
+	return '.' + zoneName;
+}
+
 global.containedZones = function(string) {
 	var zones = [];
 	settings.timezones.forEach(
@@ -44,15 +48,19 @@ global.containedZones = function(string) {
 }
 
 global.containsZones = function(string) {
-	return new RegExp(settings.timezones.join("|")).test(string);
+	var zonesLong = [];
+	settings.timezones.forEach(
+		(z) => zonesLong.push(" " + z + " ")
+	);
+	return new RegExp(zonesLong.join("|")).test(string);
 }
 
 global.updateTimes = function(roles) {
-	roles.forEach(
+	roles.array().forEach(
 		(role) => {
 			var zone = containedZones(role.name)[0];
 			role.setName(
-				zone + " - " + moment().utcOffset(
+				toRoleName(zone) + " - " + moment().utcOffset(
 					settings.offsets[
 						settings.timezones.indexOf(zone)
 					]
