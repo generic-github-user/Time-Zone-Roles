@@ -43,7 +43,7 @@ module.exports = class SayCommand extends Command {
 		}
 		
 		if (user != '') {
-			if (containsZones(zone)) {
+			if (settings.timezones.includes(zone)) {
 				var member = guild.member(user);
 				member.removeRoles(
 					guild.roles.filter(
