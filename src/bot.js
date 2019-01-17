@@ -31,7 +31,7 @@ client.registry
 
 guilds = client.guilds;
 
-function containsZone(string) {
+function containedZones(string) {
 	var zones = [];
 	settings.timezones.forEach(
 		(zone) => {
@@ -43,16 +43,18 @@ function containsZone(string) {
 	return zones;
 }
 
+function containsZones(string) {
+	new RegExp(settings.timezones.join("|")).test(string)
+}
+
 function updateTimes() {
 	guilds.array().forEach(
 		(guild) => {
 			guild.roles.filter(
-				x => new RegExp(settings.timezones.join("|")).test(
-					x.name
-				)
+				x => containsZones(x.name)
 			).array().forEach(
 				(role) => {
-					var zone = containsZone(role.name)[0];
+					var zone = containedZones(role.name)[0];
 					role.setName(
 						zone + " - " + moment.tz(zone).format('h:mm A')
 					);
