@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 
 module.exports = class SayCommand extends Command {
@@ -83,7 +84,12 @@ module.exports = class SayCommand extends Command {
 			} else {
 				msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned. Valid time zones include:');
 				msg.say(
-					settings.timezones.join(", ")
+					settings.timezones.join(", "),
+					{
+						'split': {
+							'char': ','
+						}
+					}
 				);
 			}
 		}

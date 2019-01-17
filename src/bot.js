@@ -14,7 +14,7 @@ const client = new Commando.Client({
 
 global.settings = {
 	"prefix": "?",
-	"timezones": timezones.names,
+	"timezones": moment.tz.names(),
 	"offsets": timezones.offsets
 };
 
