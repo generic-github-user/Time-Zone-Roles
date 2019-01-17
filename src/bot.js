@@ -48,7 +48,7 @@ global.containsZones = function(string) {
 }
 
 global.updateTimes = function(roles) {
-	roles.array().forEach(
+	roles.forEach(
 		(role) => {
 			var zone = containedZones(role.name)[0];
 			role.setName(

@@ -70,12 +70,15 @@ module.exports = class SayCommand extends Command {
 					// https://stackoverflow.com/a/27760489
 					Promise.resolve(role).then(
 						function(zoneRole) {
+							// console.log(zoneRole)
 							member.addRole(
 								zoneRole,
 								"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
 							).then(
 								() => msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.')
 							);
+							updateTimes(
+								guild.roles.filter(x => x.name.includes(zone))
 							);
 						}
 					);
