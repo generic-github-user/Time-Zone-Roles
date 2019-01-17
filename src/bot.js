@@ -2,6 +2,8 @@ var auth = require('./auth.json');
 var timezones = require('./timezones.js');
 var Discord = require('discord.js');
 var Commando = require('discord.js-commando');
+var moment = require('moment');
+var momentTimezone = require('moment-timezone');
 const path = require('path');
 
 const client = new Commando.Client({
