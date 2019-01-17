@@ -31,13 +31,6 @@ client.registry
 
 guilds = client.guilds;
 
-function localTime(time, offset) {
-    var d = new Date();
-    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    var nd = new Date(utc + (3600000*offset));
-    return nd;
-}
-
 function containsZone(string) {
 	var zones = [];
 	settings.timezones.forEach(
@@ -51,8 +44,6 @@ function containsZone(string) {
 }
 
 function updateTimes() {
-	var d = new Date();
-	
 	guilds.array().forEach(
 		(guild) => {
 			guild.roles.filter(
@@ -61,13 +52,9 @@ function updateTimes() {
 				)
 			).array().forEach(
 				(role) => {
+					var zone = containsZone(role.name)[0];
 					role.setName(
-						containsZone(role.name)[0] + " - " + localTime(
-							d,
-							settings.offsets[
-								settings.timezones.indexOf(containsZone(role.name)[0])
-							]
-						).getHours()
+						zone + " - " + moment.tz(zone).format('h:mm A')
 					);
 				}
 			)
@@ -82,4 +69,4 @@ client.on('ready', () => {
 });
 
 client.login(auth.token);
-setInterval(updateTimes, 30*60)
+setInterval(updateTimes, 60*1000);
