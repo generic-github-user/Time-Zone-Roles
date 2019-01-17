@@ -47,18 +47,28 @@ containsZones = function(string) {
 	return new RegExp(settings.timezones.join("|")).test(string);
 }
 
-function updateTimes() {
+updateTimes = function(roles) {
+	roles.array().forEach(
+		(role) => {
+			var zone = containedZones(role.name)[0];
+			role.setName(
+				zone + " - " + moment().utcOffset(
+					settings.offsets[
+						settings.timezones.indexOf(zone)
+					]
+				).format('h:mm A')
+			);
+		}
+	);
+}
+
+function updateAllTimes() {
 	guilds.array().forEach(
 		(guild) => {
-			guild.roles.filter(
-				x => containsZones(x.name)
-			).array().forEach(
-				(role) => {
-					var zone = containedZones(role.name)[0];
-					role.setName(
-						zone + " - " + moment.tz(zone).format('h:mm A')
-					);
-				}
+			updateTimes(
+				guild.roles.filter(
+					x => containsZones(x.name)
+				)
 			)
 		}
 	);
@@ -67,8 +77,8 @@ function updateTimes() {
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	client.user.setActivity('with time');
-	updateTimes();
+	updateAllTimes();
 });
 
 client.login(auth.token);
-setInterval(updateTimes, 60*1000);
+setInterval(updateAllTimes, 60*1000);
