@@ -19,3 +19,20 @@ member.roles.forEach(
 		)
 	}
 );
+
+Discord.splitMessage(
+	settings.timezones.join(", ")
+).forEach(
+	(shortMsg) => {
+		msg.say(shortMsg)
+	}
+);
+
+msg.say(
+    Discord.splitMessage(
+        array.join(", "),
+        {
+            'char': ','
+        }
+    )
+);
