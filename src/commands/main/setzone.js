@@ -52,7 +52,7 @@ module.exports = class SayCommand extends Command {
 					)
 				);
 				
-				var role = guild.roles.find(x => x.name === zone);
+				var role = guild.roles.find(x => x.name.includes(zone));
 				if (!role) {
 					role = guild.createRole(
 						{
@@ -65,7 +65,7 @@ module.exports = class SayCommand extends Command {
 				
 				if (
 					!member.roles
-					.find(x => x.name === zone)
+					.find(x => x.name.includes(zone))
 				) {
 					// https://stackoverflow.com/a/27760489
 					Promise.resolve(role).then(
