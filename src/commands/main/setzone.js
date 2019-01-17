@@ -69,7 +69,7 @@ module.exports = class SayCommand extends Command {
 				) {
 					// https://stackoverflow.com/a/27760489
 					Promise.resolve(role).then(
-						function(zoneRole) {
+						(zoneRole) => {
 							// console.log(zoneRole)
 							member.addRole(
 								zoneRole,
