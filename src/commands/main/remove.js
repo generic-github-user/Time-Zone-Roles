@@ -13,6 +13,13 @@ module.exports = class SayCommand extends Command {
 				'?remove EST',
 				'?remove [ALL]'
 			],
+            args: [
+                {
+                    key: 'zone',
+                    prompt: 'What time zone do you want to remove from the server?',
+                    type: 'string'
+                }
+            ],
 			throttling: {
 				usages: 1,
 				duration: 15
