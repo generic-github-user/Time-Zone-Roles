@@ -50,41 +50,43 @@ module.exports = class SayCommand extends Command {
 					guild.roles.filter(
 						x => containsZones(toRoleName(x.name))
 					)
-				);
-				
-				var role = guild.roles.find(x => x.name.includes(toRoleName(zone)));
-				if (!role) {
-					role = guild.createRole(
-						{
-							name: toRoleName(zone),
-							color: 'BLUE',
-						},
-						"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
-					);
-				}
-				
-				if (
-					!member.roles
-					.find(x => x.name.includes(toRoleName(zone)))
-				) {
-					// https://stackoverflow.com/a/27760489
-					Promise.resolve(role).then(
-						(zoneRole) => {
-							// console.log(zoneRole)
-							member.addRole(
-								zoneRole,
-								"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
-							).then(
-								() => msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.')
-							);
-							updateTimes(
-								guild.roles.filter(x => x.name.includes(toRoleName(zone)))
+				).then(
+					() => {
+						var role = guild.roles.find(x => x.name.includes(toRoleName(zone)));
+						if (!role) {
+							role = guild.createRole(
+								{
+									name: toRoleName(zone),
+									color: 'BLUE',
+								},
+								"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
 							);
 						}
-					);
-				} else {
-					msg.say(user.username + ' already has the timezone role `' + zone + '`.');
-				}
+						
+						if (
+							!member.roles
+							.find(x => x.name.includes(toRoleName(zone)))
+						) {
+							// https://stackoverflow.com/a/27760489
+							Promise.resolve(role).then(
+								(zoneRole) => {
+									// console.log(zoneRole)
+									member.addRole(
+										zoneRole,
+										"Timezone role " + role.name + " added to user " + user.username + " by Time Zone Roles bot."
+									).then(
+										() => msg.say('Added the timezone role `' + zone + '` to ' + user.username + '.')
+									);
+									updateTimes(
+										guild.roles.filter(x => x.name.includes(toRoleName(zone)))
+									);
+								}
+							);
+						} else {
+							msg.say(user.username + ' already has the timezone role `' + zone + '`.');
+						}
+					}
+				);
 			} else {
 				msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned. Valid time zones include:');
 				msg.say(
