@@ -50,9 +50,11 @@ global.containedZones = function(zoneList, string) {
 global.containsZones = function(string) {
 	var zonesLong = [];
 	settings.timezones.forEach(
-		(z) => zonesLong.push(" " + z + " ")
+		(z) => zonesLong.push(toRoleName(z))
 	);
-	return new RegExp(zonesLong.join("|")).test(string);
+	
+	var cz = containedZones(zonesLong, string).length;
+	return !!cz;
 }
 
 global.updateTimes = function(roles) {
@@ -75,7 +77,7 @@ function updateAllTimes() {
 		(guild) => {
 			updateTimes(
 				guild.roles.filter(
-					x => containsZones(x.name)
+					x => containsZones(toRoleName(x.name))
 				)
 			);
 		}
