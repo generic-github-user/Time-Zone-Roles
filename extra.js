@@ -36,3 +36,9 @@ msg.say(
         }
     )
 );
+
+if (cz == 0) {
+	return false;
+} else {
+	return true;
+}
