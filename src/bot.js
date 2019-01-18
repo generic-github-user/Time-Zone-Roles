@@ -18,6 +18,11 @@ global.settings = {
 	"offsets": timezones.offsets
 };
 
+var zonesLong = [];
+settings.timezones.forEach(
+	(z) => zonesLong.push(toRoleName(z))
+);
+
 client.registry
     .registerDefaultTypes()
     .registerGroups([
@@ -48,11 +53,6 @@ global.containedZones = function(zoneList, string) {
 }
 
 global.containsZones = function(string) {
-	var zonesLong = [];
-	settings.timezones.forEach(
-		(z) => zonesLong.push(toRoleName(z))
-	);
-	
 	var cz = containedZones(zonesLong, string).length;
 	return !!cz;
 }
