@@ -35,9 +35,9 @@ global.toRoleName = function (zoneName) {
 	return '.' + zoneName;
 }
 
-global.containedZones = function(string) {
+global.containedZones = function(zoneList, string) {
 	var zones = [];
-	settings.timezones.forEach(
+	zoneList.forEach(
 		(zone) => {
 			if (string.includes(zone)) {
 				zones.push(zone);
@@ -58,7 +58,7 @@ global.containsZones = function(string) {
 global.updateTimes = function(roles) {
 	roles.array().forEach(
 		(role) => {
-			var zone = containedZones(role.name)[0];
+			var zone = containedZones(settings.timezones, role.name)[0];
 			role.setName(
 				toRoleName(zone) + " - " + moment().utcOffset(
 					settings.offsets[
@@ -77,7 +77,7 @@ function updateAllTimes() {
 				guild.roles.filter(
 					x => containsZones(x.name)
 				)
-			)
+			);
 		}
 	);
 }
