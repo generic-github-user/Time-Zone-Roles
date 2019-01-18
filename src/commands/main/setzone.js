@@ -58,6 +58,7 @@ module.exports = class SayCommand extends Command {
 								{
 									name: toRoleName(zone),
 									color: 'BLUE',
+									mentionable: true
 								},
 								"Timezone role " + zone + " created for " + user.username + " by " + msg.author.username + " with Time Zone Roles bot."
 							);
