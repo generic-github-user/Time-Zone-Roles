@@ -65,7 +65,8 @@ module.exports = class SayCommand extends Command {
 		else if (zone === '[ALL]') {
 			var roles = guild.roles.filter(
 				x => containsZones(toRoleName(x.name))
-			)
+			);
+			
 			if (roles.size > 0) {
 				roles.deleteAll();
 				
@@ -78,6 +79,9 @@ module.exports = class SayCommand extends Command {
 						)[0]
 					).join(', ')
 				);
+			}
+			else {
+				msg.say('There are no timezone roles on this server - use `?setzone <timezone>` to add a timezone to a user.');
 			}
 		}
     }
