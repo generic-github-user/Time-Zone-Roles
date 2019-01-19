@@ -18,6 +18,10 @@ global.settings = {
 	"offsets": timezones.offsets
 };
 
+global.toRoleName = function (zoneName) {
+	return '.' + zoneName;
+}
+
 var zonesLong = [];
 settings.timezones.forEach(
 	(z) => zonesLong.push(toRoleName(z))
@@ -35,10 +39,6 @@ client.registry
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 guilds = client.guilds;
-
-global.toRoleName = function (zoneName) {
-	return '.' + zoneName;
-}
 
 global.containedZones = function(zoneList, string) {
 	var zones = [];
