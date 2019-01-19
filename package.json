@@ -4,6 +4,9 @@
   "description": "Display local time for each member of a server",
   "main": "bot.js",
   "author": "generic_discord_user",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "dependencies": {
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
