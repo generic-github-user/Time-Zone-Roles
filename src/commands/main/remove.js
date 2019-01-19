@@ -42,6 +42,22 @@ module.exports = class SayCommand extends Command {
 					}
 				);
 			}
+			else if (
+				guild.roles.find(
+					x => containsZones(toRoleName(x.name))
+				)
+			) {
+				msg.say('`' + zone + '` does not exist on this server. These are all the existing timezone roles on this server:');
+				var roles = guild.roles.filter(
+					x => containsZones(toRoleName(x.name))
+				).map(
+					y => containedZones(
+						settings.timezones,
+						y.name
+					)[0]
+				);
+				msg.say(roles.join(', '));
+			}
 		}
     }
 };
