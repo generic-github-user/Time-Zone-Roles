@@ -28,7 +28,20 @@ module.exports = class SayCommand extends Command {
         });
     }
 
-    run(msg) {
+    run(msg, { zone }) {
+		var guild = msg.guild;
 		
+		if (settings.timezones.includes(zone)) {
+			var role = guild.roles.find(
+				x => containsZones(toRoleName(x.name)) && x.name.includes(zone)
+			);
+			if (role) {
+				role.delete().then(
+					() => {
+						msg.say('Time zone role for `' + zone + '` removed from server.');
+					}
+				);
+			}
+		}
     }
 };
