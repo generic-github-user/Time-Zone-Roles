@@ -1,5 +1,5 @@
-var auth = require('./auth.json');
-var timezones = require('./timezones.js');
+var auth = require('auth.json');
+var timezones = require('timezones.js');
 var Discord = require('discord.js');
 var Commando = require('discord.js-commando');
 var moment = require('moment');
