@@ -1,5 +1,12 @@
-var auth = require('auth.json');
-var timezones = require('timezones.js');
+try {
+	var auth = require('./auth.json');
+} catch (error) {
+	var auth = {
+		'token': process.env.BOT_TOKEN,
+		'owner': '376358607836545032'
+	};
+}
+var timezones = require('./timezones.js');
 var Discord = require('discord.js');
 var Commando = require('discord.js-commando');
 var moment = require('moment');
