@@ -23,7 +23,7 @@ module.exports = class SayCommand extends Command {
 		listZones(msg);
 		
 		var roles = msg.guild.roles.filter(
-			x => containsZones(toRoleName(x.name))
+			x => containsZones(x.name)
 		);
 		if (roles.size > 0) {
 			msg.say('Existing timezone roles on this server:');

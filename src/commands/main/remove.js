@@ -33,7 +33,7 @@ module.exports = class SayCommand extends Command {
 		
 		if (settings.timezones.includes(zone)) {
 			var role = guild.roles.find(
-				x => containsZones(toRoleName(x.name)) && x.name.includes(zone)
+				x => containsZones(x.name) && x.name.includes(zone)
 			);
 			if (role) {
 				role.delete().then(
@@ -44,12 +44,12 @@ module.exports = class SayCommand extends Command {
 			}
 			else if (
 				guild.roles.find(
-					x => containsZones(toRoleName(x.name))
+					x => containsZones(x.name)
 				)
 			) {
 				msg.say('`' + zone + '` does not exist on this server. These are all the existing timezone roles on this server:');
 				var roles = guild.roles.filter(
-					x => containsZones(toRoleName(x.name))
+					x => containsZones(x.name)
 				).map(
 					y => containedZones(
 						settings.timezones,
@@ -64,7 +64,7 @@ module.exports = class SayCommand extends Command {
 		}
 		else if (zone === '[ALL]') {
 			var roles = guild.roles.filter(
-				x => containsZones(toRoleName(x.name))
+				x => containsZones(x.name)
 			);
 			
 			if (roles.size > 0) {

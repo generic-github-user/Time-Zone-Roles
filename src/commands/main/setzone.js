@@ -48,7 +48,7 @@ module.exports = class SayCommand extends Command {
 				var member = guild.member(user);
 				member.removeRoles(
 					guild.roles.filter(
-						x => containsZones(toRoleName(x.name))
+						x => containsZones(x.name)
 					)
 				).then(
 					() => {

@@ -84,7 +84,7 @@ function updateAllTimes() {
 		(guild) => {
 			updateTimes(
 				guild.roles.filter(
-					x => containsZones(toRoleName(x.name))
+					x => containsZones(x.name)
 				)
 			);
 		}
