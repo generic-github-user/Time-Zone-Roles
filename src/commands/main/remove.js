@@ -24,7 +24,7 @@ module.exports = class SayCommand extends Command {
 				usages: 1,
 				duration: 15
 			},
-			userPermissions: ['MANAGE_SERVER']
+			userPermissions: ['MANAGE_ROLES']
         });
     }
 
