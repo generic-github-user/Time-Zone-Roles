@@ -89,6 +89,7 @@ module.exports = class SayCommand extends Command {
 			msg.say(
 				settings.timezones.join(", ")
 			);
+			msg.say('If you wish to remove all timezone roles from this server, use `?remove [ALL]`');
 		}
     }
 };
