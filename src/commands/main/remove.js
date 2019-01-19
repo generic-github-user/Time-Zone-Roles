@@ -85,10 +85,8 @@ module.exports = class SayCommand extends Command {
 			}
 		}
 		else {
-			msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned. Valid time zones include:');
-			msg.say(
-				settings.timezones.join(", ")
-			);
+			msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned.');
+			listZones(msg);
 			msg.say('If you wish to remove all timezone roles from this server, use `?remove [ALL]`');
 		}
     }

@@ -8,7 +8,7 @@ module.exports = class SayCommand extends Command {
 			aliases: ['listzones', 'showzones', 'tzrzones', 'timezones', 'listtimezones'],
             group: 'main',
             memberName: 'zones',
-            description: 'List all available timezones. Support for custom timezones is planned.',
+            description: 'List all available timezones and timezone roles present on server. Support for custom timezones is planned.',
             examples: [
 				'?zones'
 			],
@@ -20,8 +20,7 @@ module.exports = class SayCommand extends Command {
     }
 
     run(msg) {
-		msg.say("Available timezones:");
-		msg.say(settings.timezones.join(", "));
+		listZones(msg);
 		
 		var roles = msg.guild.roles.filter(
 			x => containsZones(toRoleName(x.name))

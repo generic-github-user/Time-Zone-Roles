@@ -22,6 +22,13 @@ global.toRoleName = function (zoneName) {
 	return '.' + zoneName;
 }
 
+global.listZones = function (msg) {
+	msg.say('Available timezones:');
+	msg.say(
+		settings.timezones.join(", ")
+	);
+}
+
 var zonesLong = [];
 settings.timezones.forEach(
 	(z) => zonesLong.push(toRoleName(z))
