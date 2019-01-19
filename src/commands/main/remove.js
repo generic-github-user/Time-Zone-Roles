@@ -68,6 +68,16 @@ module.exports = class SayCommand extends Command {
 			)
 			if (roles.size > 0) {
 				roles.deleteAll();
+				
+				msg.say('All timezone roles removed from server. These timezones were removed:');
+				msg.say(
+					roles.map(
+						z => containedZones(
+							settings.timezones,
+							z.name
+						)[0]
+					).join(', ')
+				);
 			}
 		}
     }
