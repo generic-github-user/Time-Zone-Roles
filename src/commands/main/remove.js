@@ -8,7 +8,7 @@ module.exports = class SayCommand extends Command {
 			aliases: ['removezone', 'removetimezone', 'removezonerole', 'removetimezonerole', 'clearzone'],
             group: 'main',
             memberName: 'remove',
-            description: 'Remove timezone role from current server. If no timezone is provided, the role of the user who executes the command will be deleted. Use [ALL] as an input to remove all timezones from this server.',
+            description: 'Remove timezone role from current server. Use [ALL] as an input to remove all timezones from this server.',
             examples: [
 				'?remove EST',
 				'?remove [ALL]'
