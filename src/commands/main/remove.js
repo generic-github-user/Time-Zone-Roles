@@ -58,6 +58,9 @@ module.exports = class SayCommand extends Command {
 				);
 				msg.say(roles.join(', '));
 			}
+			else {
+				msg.say('`' + zone + '` does not exist on this server. There are no timezone roles on this server - use `?setzone <timezone>` to add a timezone to a user.');
+			}
 		}
     }
 };
