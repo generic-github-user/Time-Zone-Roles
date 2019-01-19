@@ -84,5 +84,11 @@ module.exports = class SayCommand extends Command {
 				msg.say('There are no timezone roles on this server - use `?setzone <timezone>` to add a timezone to a user.');
 			}
 		}
+		else {
+			msg.say('`' + zone + '` is not a valid time zone. Support for custom time zones is planned. Valid time zones include:');
+			msg.say(
+				settings.timezones.join(", ")
+			);
+		}
     }
 };
