@@ -62,5 +62,13 @@ module.exports = class SayCommand extends Command {
 				msg.say('`' + zone + '` does not exist on this server. There are no timezone roles on this server - use `?setzone <timezone>` to add a timezone to a user.');
 			}
 		}
+		else if (zone === '[ALL]') {
+			var roles = guild.roles.filter(
+				x => containsZones(toRoleName(x.name))
+			)
+			if (roles.size > 0) {
+				roles.deleteAll();
+			}
+		}
     }
 };
